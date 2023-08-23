@@ -1,27 +1,24 @@
-var formulario = document.querySelector("#form")
-
+/* var formulario = document.querySelector("#form") */
+const formulario = document.forms["formulario"]; //changed form reference, added id to html tag
 formulario.onsubmit = function(e) {
 
-  e.prevent();
+  e.preventDefault(); //change prevent to preventDefault
   
-  var n = formulario.elements[0]
-  var e = formulario.elements[1]
-  var na = formulario.elements[2]
+//Changed the way we obtain the values of the form and changed var's to const's
 
-  var nombre = n.value
-  var edad = e.value
+  const nombre = formulario.elements["name"].value;
+  const edad = formulario.elements["age"].value;
+  const nacionalidad = formulario.elements["nationality"].value;
 
-  var i = na.selectedIndex
-  var nacionalidad = na.options[i].value
   console.log(nombre, edad)
   console.log(nacionalidad)
 
-  if (nombre.length === 0) {
+  /* if (nombre.length === 0) {
     n.classList.add("error")
   }
   if (edad < 18 || edad > 120) {
     e.classList.add("error")
-  }
+  } */
 
 if (nombre.length > 0 
   && (edad > 18 
@@ -29,16 +26,15 @@ if (nombre.length > 0
   agregarInvitado(nombre, edad, nacionalidad)
   }
 }
-
-var botonBorrar = document.createElement("button")
+//this is not necessary 
+/* var botonBorrar = document.createElement("button")
 botonBorrar.textContent = "Eliminar invitado"
 botonBorrar.id = "boton-borrar"
 var corteLinea = document.createElement("br")
 document.body.appendChild(corteLinea)
-document.body.appendChild(botonBorrar);
+document.body.appendChild(botonBorrar); */
 
 function agregarInvitado(nombre, edad, nacionalidad) {
-
   if (nacionalidad === "ar") {
     nacionalidad = "Argentina"
   }
@@ -51,11 +47,13 @@ function agregarInvitado(nombre, edad, nacionalidad) {
   else if (nacionalidad === "per") {
     nacionalidad = "Peruana"
   }
+  console.log(nacionalidad);
 
-var lista = document.getElementById("lista-de-invitados")
-
-var elementoLista = document.createElement("div")
-elementoLista.classList.added("elemento-lista")
+var lista = document.getElementById("lista-de-invitados"); //added a div with lista-de-invitados id to html
+var elementoLista = document.createElement("div");
+elementoLista.classList.add("elemento-lista"); //changed added to add
+console.log(elementoLista);
+console.log(lista);
 lista.appendChild(elementoLista)
 
 var spanNombre = document.createElement("span")
